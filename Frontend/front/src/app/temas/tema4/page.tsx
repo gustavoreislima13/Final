@@ -30,9 +30,9 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 bg-white p-6 shadow-xl">
+      <aside className="w-full lg:w-64 bg-white p-6 shadow-xl">
         <nav>
           <h2 className="text-gray-400 text-sm font-bold mb-4">MAIN MENU</h2>
           <ul className="space-y-4">
@@ -42,7 +42,7 @@ export default function Dashboard() {
               </Link>
             </li>
             <li>
-              <Link href="/temas/car-rent" className="text-gray-600 p-3 rounded-lg text-lg font-bold flex items-center hover:text-blue-600 hover:bg-gray-200">
+              <Link href="#car-rent-page" onClick={(e) => { e.preventDefault(); document.getElementById('car-rent-page').classList.remove('hidden'); }} className="text-gray-600 p-3 rounded-lg text-lg font-bold flex items-center hover:text-blue-600 hover:bg-gray-200">
                 <span className="ml-2">Car Rent</span>
               </Link>
             </li>
@@ -82,9 +82,7 @@ export default function Dashboard() {
             </li>
             <li className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-200">
               <span className="text-gray-600 text-lg font-bold">Dark Mode</span>
-              <button className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700">
-                <span className="material-icons">brightness_4</span>
-              </button>
+              <button className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700"></button>
             </li>
           </ul>
           <div className="mt-10">
@@ -96,15 +94,13 @@ export default function Dashboard() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <main className="flex-1 p-6 md:p-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* Details Rental */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
             <h2 className="text-xl font-bold mb-4">Details Rental</h2>
             <MapContainer center={[-23.5505, -46.6333]} zoom={10} className="h-48 w-full rounded-lg mb-4">
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               <Marker position={[-23.5505, -46.6333]}>
                 <Popup>Nissan GT - R Location</Popup>
               </Marker>
@@ -122,7 +118,7 @@ export default function Dashboard() {
                 <div className="w-3 h-3 rounded-full bg-blue-600 mr-2"></div>
                 <span className="font-semibold">Pick - Up</span>
               </div>
-              <div className="grid grid-cols-3 gap-4 mb-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
                 <div>
                   <label className="block text-sm text-gray-500">Locations</label>
                   <span className="block font-medium">Kota Semarang</span>
@@ -140,7 +136,7 @@ export default function Dashboard() {
                 <div className="w-3 h-3 rounded-full bg-blue-600 mr-2"></div>
                 <span className="font-semibold">Drop - Off</span>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm text-gray-500">Locations</label>
                   <span className="block font-medium">Kota Semarang</span>
@@ -163,7 +159,7 @@ export default function Dashboard() {
           </div>
 
           {/* Top 5 Car Rental and Recent Transaction */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl space-y-8">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl space-y-8">
             {/* Top 5 Car Rental */}
             <div>
               <div className="flex justify-between items-center mb-4">
@@ -234,6 +230,64 @@ export default function Dashboard() {
                   <span className="font-bold text-lg">$80.00</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Car Rent Page */}
+        <div id="car-rent-page" className="hidden">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl mt-8">
+            <h2 className="text-xl font-bold mb-4">Car Rent Details</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold">Billing Info</h3>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Name</label>
+                  <input type="text" placeholder="Your name" className="w-full p-2 border border-gray-300 rounded-lg" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Phone Number</label>
+                  <input type="text" placeholder="Phone number" className="w-full p-2 border border-gray-300 rounded-lg" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Address</label>
+                  <input type="text" placeholder="Address" className="w-full p-2 border border-gray-300 rounded-lg" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Town / City</label>
+                  <input type="text" placeholder="Town or city" className="w-full p-2 border border-gray-300 rounded-lg" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold">Rental Info</h3>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Pick - Up Location</label>
+                  <select className="w-full p-2 border border-gray-300 rounded-lg">
+                    <option>Select your city</option>
+                    <option>New York</option>
+                    <option>Los Angeles</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Pick - Up Date</label>
+                  <input type="date" className="w-full p-2 border border-gray-300 rounded-lg" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Drop - Off Location</label>
+                  <select className="w-full p-2 border border-gray-300 rounded-lg">
+                    <option>Select your city</option>
+                    <option>New York</option>
+                    <option>Los Angeles</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-500">Drop - Off Date</label>
+                  <input type="date" className="w-full p-2 border border-gray-300 rounded-lg" />
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 flex justify-end">
+              <button className="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700">Proceed to Payment</button>
             </div>
           </div>
         </div>
