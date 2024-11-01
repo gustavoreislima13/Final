@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -10,6 +11,8 @@ import 'leaflet/dist/leaflet.css';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Dashboard() {
+  const router = useRouter();
+
   const chartData = {
     labels: ['Sport Car', 'SUV', 'Coupe', 'Hatchback', 'MPV'],
     datasets: [
@@ -42,7 +45,7 @@ export default function Dashboard() {
               </Link>
             </li>
             <li>
-              <Link href="#car-rent-page" onClick={(e) => { e.preventDefault(); document.getElementById('car-rent-page').classList.remove('hidden'); }} className="text-gray-600 p-3 rounded-lg text-lg font-bold flex items-center hover:text-blue-600 hover:bg-gray-200">
+              <Link href="/app/temas/tema4/rent" className="text-gray-600 p-3 rounded-lg text-lg font-bold flex items-center hover:text-blue-600 hover:bg-gray-200">
                 <span className="ml-2">Car Rent</span>
               </Link>
             </li>

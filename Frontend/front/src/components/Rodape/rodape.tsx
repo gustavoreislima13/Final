@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="flex justify-between items-start p-8 bg-white w-full border-t border-gray-200">
       <div className="flex-1">
-        <Image src="/porto_seguro_logo.png" alt="Porto Seguro Logo" width={50} height={50} />
+        <Image src="/porto_seguro_logo.png" alt="" width={50} height={50} />
         <p className="mt-4 text-gray-800 max-w-xs">
           Conte com todo nosso cuidado também, cartões e serviços Porto em um só lugar de forma rápida e segura. Baixe agora!
         </p>
